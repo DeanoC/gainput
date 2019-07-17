@@ -164,7 +164,7 @@ public:
 				return;
 			}
 
-			const int key = msg.wParam;
+			const WPARAM key = msg.wParam;
 			if (key == 0x08 // backspace 
 				|| key == 0x0A // linefeed 
 				|| key == 0x1B // escape 
@@ -174,7 +174,7 @@ public:
 			{
 				return;
 			}
-			const char charKey = key;
+			const char charKey = (char)key;
 			textBuffer_.Put(charKey);
 #ifdef GAINPUT_DEBUG
 			GAINPUT_LOG("Text: %c\n", charKey);
@@ -183,7 +183,7 @@ public:
 		}
 
 		bool pressed = false;
-		unsigned winKey;
+		WPARAM winKey;
 		switch (msg.message)
 		{
 		case WM_KEYDOWN:
@@ -251,9 +251,9 @@ public:
 		GAINPUT_LOG("Keyboard: %d, %i\n", winKey, pressed);
 #endif
 
-		if (dialect_.count(winKey))
+		if (dialect_.count((unsigned int)winKey))
 		{
-			const DeviceButtonId buttonId = dialect_[winKey];
+			const DeviceButtonId buttonId = dialect_[(unsigned int)winKey];
 			HandleButton(device_, nextState_, delta_, buttonId, pressed);
 		}
 	}

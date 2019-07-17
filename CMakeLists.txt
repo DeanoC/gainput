@@ -120,3 +120,6 @@ set(Deps
 
 ADD_LIB(${LibName} "${Interface}" "${Src}" "${Deps}")
 target_include_directories(${LibName} PUBLIC lib/include)
+if(WIN32)
+	target_link_libraries(${LibName} PUBLIC Xinput.lib )
+endif()
