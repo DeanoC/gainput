@@ -319,7 +319,7 @@ public:
 
 		if (vi == InvalidKey)
 		{
-			keys_[ha] = (gainput::uint32_t)values_.size();
+			keys_[ha] = (uint32_t)values_.size();
 		}
 		else
 		{
@@ -327,7 +327,7 @@ public:
 			{
 				if (values_[vi].next == InvalidKey)
 				{
-					values_[vi].next = (gainput::uint32_t)values_.size();
+					values_[vi].next = (uint32_t)values_.size();
 					break;
 				}
 				else
